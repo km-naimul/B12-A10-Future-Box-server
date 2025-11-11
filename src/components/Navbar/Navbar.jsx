@@ -1,12 +1,21 @@
-import React, { use } from 'react';
-import { NavLink } from 'react-router';
-import logo from "../../assets/design-eye-catching-financial-logo.jpg"
-import { AuthContext } from '../../contexts/AuthContext';
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router";
+import logo from "../../assets/design-eye-catching-financial-logo.jpg";
+import { AuthContext } from "../../contexts/AuthContext";
+
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
 
-    const {user} = use( AuthContext);
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        window.location.href = "/login";
+      })
+      .catch((error) => console.log(error));
+  };
 
- const links = (
+  const links = (
     <>
       <li className="font-semibold">
         <NavLink to="/">Home</NavLink>
@@ -57,15 +66,12 @@ const Navbar = () => {
             <li className="font-semibold">
               <NavLink to="/register">Register</NavLink>
             </li>
-
-
-
           </ul>
         </div>
 
         <div className="flex items-center">
           <img src={logo} alt="logo" className="w-12 h-12 object-contain py-2" />
-          <a className=" text-4xl font-bold flex items-center">
+          <a className="text-4xl font-bold flex items-center">
             Fin <span className="text-primary">Ease</span>
           </a>
         </div>
@@ -76,28 +82,50 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
 
-      {/* Right Side (Register + Auth Buttons) */}
+      {/* Right Side */}
       <div className="navbar-end gap-3">
-        <NavLink
-          to="/register"
-          className="btn btn-outline btn-primary font-semibold"
-        >
-          Register
-        </NavLink>
-
-        <NavLink
-          to="/login"
-          className="btn btn-outline btn-primary font-semibold"
-        >
-          Login
-        </NavLink>
-
         {user ? (
-          <button className="btn btn-secondary">Sign Out</button>
+          <div className="relative">
+            {/* Profile Photo */}
+            <img
+              src={user.photoURL || "https://i.ibb.co/3d8YQfP/default-user.png"}
+              alt="User"
+              className="w-10 h-10 rounded-full cursor-pointer border border-primary"
+              onClick={() => setOpen(!open)}
+            />
+
+            {/* Dropdown */}
+            {open && (
+              <div className="absolute right-0 mt-2 w-56 bg-white shadow-md rounded-xl p-4 border border-gray-100 z-10">
+                <div className="text-center mb-2">
+                  <p className="font-semibold">{user.displayName || "User"}</p>
+                  <p className="text-sm text-gray-500">{user.email}</p>
+                </div>
+                <div className="divider my-1"></div>
+                <button
+                  onClick={handleSignOut}
+                  className="btn btn-error w-full text-white"
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
+          </div>
         ) : (
-          <NavLink to="/login" className="btn btn-accent text-white">
-            Login
-          </NavLink>
+          <>
+            <NavLink
+              to="/register"
+              className="btn btn-outline btn-primary font-semibold"
+            >
+              Register
+            </NavLink>
+            <NavLink
+              to="/login"
+              className="btn btn-accent text-white font-semibold"
+            >
+              Login
+            </NavLink>
+          </>
         )}
       </div>
     </div>
