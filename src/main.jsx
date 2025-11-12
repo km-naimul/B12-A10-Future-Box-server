@@ -14,12 +14,14 @@ import AuthProvider from './contexts/AuthProvider.jsx';
 import Register from './components/Register/Register.jsx';
 import Login from './components/Login/Login.jsx';
 import MyProfile from './pages/MyProfile.jsx';
-
+import ErrorPage from './pages/ErrorPage.jsx';
+ 
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage />, // ✅ এখানে error page যুক্ত করা হলো
     children: [
       {
         index: true,
@@ -45,7 +47,6 @@ const router = createBrowserRouter([
         path: 'login',
         Component: Login
       },
-
       {
         path: 'myprofile',
         Component: MyProfile
@@ -56,8 +57,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <AuthProvider> 
-    <RouterProvider router={router} />
-   </AuthProvider>
+    <AuthProvider> 
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
-)
+);
