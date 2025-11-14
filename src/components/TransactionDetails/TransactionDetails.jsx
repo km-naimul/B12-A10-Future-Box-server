@@ -1,37 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const TransactionDetails = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const [transaction, setTransaction] = useState(null);
   const [categoryTotal, setCategoryTotal] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // একক ট্রানজ্যাকশন fetch করা
+    if (!user?.email) return;
+
+    // Fetch single transaction
     fetch(`http://localhost:3000/transactions/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTransaction(data);
 
-        // Category অনুযায়ী সব ট্রানজ্যাকশন fetch করে total বের করা
+        // Fetch all transactions in same category but ONLY for same user & same type
         fetch(
-          `http://localhost:3000/transactions?category=${data.category}`
+          `http://localhost:3000/transactions?category=${data.category}&email=${user.email}&type=${data.type}`
         )
           .then((res) => res.json())
           .then((allCategoryData) => {
             const total = allCategoryData.reduce(
-              (sum, t) => sum + parseFloat(t.amount || 0),
+              (sum, t) => sum + Number(t.amount || 0),
               0
             );
             setCategoryTotal(total);
           });
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         Swal.fire("Error", "Failed to load transaction details.", "error");
       });
-  }, [id]);
+  }, [id, user]);
 
   if (!transaction) {
     return (
@@ -69,15 +73,18 @@ const TransactionDetails = () => {
             <strong>Date:</strong>{" "}
             {new Date(transaction.date).toLocaleDateString()}
           </p>
+
+          {/* 🔥 Total only for this category + same type + same user */}
           <p className="font-semibold text-primary">
-            <strong>Total in this Category:</strong> ${categoryTotal.toFixed(2)}
+            <strong>Total in this Category ({transaction.type}):</strong>{" "}
+            ${categoryTotal.toFixed(2)}
           </p>
         </div>
 
         <div className="card-actions justify-center mt-6">
           <button
             className="btn btn-primary"
-            onClick={() => (window.location.href = "/my-transactions")}
+            onClick={() => navigate("/my-transactions")}
           >
             ⬅ Back to My Transactions
           </button>

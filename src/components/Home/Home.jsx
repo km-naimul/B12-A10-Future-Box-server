@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
   const [transactions, setTransactions] = useState([]);
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
   const [balance, setBalance] = useState(0);
 
   const fetchTransactions = () => {
-    fetch("http://localhost:3000/transaction-balance")
+    if (!user?.email) return;
+
+    fetch(`http://localhost:3000/transaction-balance?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setTransactions(data);
@@ -17,7 +21,7 @@ const Home = () => {
           .reduce((sum, t) => sum + Number(t.amount || 0), 0);
 
         const totalExpense = data
-          .filter((t) => t.type === "expense" || t.type === "expanse")
+          .filter((t) => t.type === "expense")
           .reduce((sum, t) => sum + Number(t.amount || 0), 0);
 
         setIncome(totalIncome);
@@ -28,15 +32,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchTransactions(); // প্রথমবার data load
+    fetchTransactions(); 
 
-    // প্রতি 5 সেকেন্ডে server থেকে fresh data আনবে
-    const interval = setInterval(() => {
-      fetchTransactions();
-    }, 5000);
-
-    return () => clearInterval(interval); // cleanup
-  }, []);
+    const interval = setInterval(fetchTransactions, 5000);
+    return () => clearInterval(interval);
+  }, [user]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 via-cyan-50 to-white">
@@ -73,8 +73,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <section className="mt-10 grid md:grid-cols-2 gap-6 px-4 md:px-8 pb-10">
-        {/* First Static Card */}
         <div className="p-6 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
           <h3 className="font-bold text-lg text-gray-800">Budgeting Tips</h3>
           <p className="mt-2 text-gray-600">
@@ -83,7 +83,6 @@ const Home = () => {
           </p>
         </div>
 
-        {/* Second Static Card */}
         <div className="p-6 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
           <h3 className="font-bold text-lg text-gray-800">
             Why Financial Planning Matters

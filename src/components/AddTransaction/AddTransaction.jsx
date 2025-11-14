@@ -26,10 +26,11 @@ const AddTransaction = () => {
     e.preventDefault();
 
     const newTransaction = {
-      ...formData,
-      email: user?.email,
-      name: user?.displayName,
-    };
+  ...formData,
+  email: user?.email,
+  name: user?.displayName,
+  amount: Number(formData.amount) // <-- এখানে string কে Number এ convert করা হয়েছে
+};
 
     try {
       const res = await fetch("http://localhost:3000/transactions", {
