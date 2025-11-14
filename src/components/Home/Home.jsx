@@ -45,11 +45,19 @@ const Home = () => {
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
           Take Control of Your Money
         </h1>
-        <p className="mt-3 text-lg md:text-xl opacity-90">
-          Track, budget, and grow — all in one place.
-        </p>
-      </section>
+       
+       <marquee behavior="" direction="" gradient={true}>
+        <p className="mt-3 text-lg md:text-xl opacity-90 text-black font-semibold">
+         Plan your finances, control your future — your money should work for you, not against you.
 
+        </p>
+       </marquee>
+       
+        
+      </section>
+    <p>
+
+    </p>
       {/* Summary Cards */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-8 mt-10">
         <div className="p-6 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 shadow-md hover:shadow-lg transition">
@@ -75,24 +83,99 @@ const Home = () => {
       </section>
 
       <section className="mt-10 grid md:grid-cols-2 gap-6 px-4 md:px-8 pb-10">
-        <div className="p-6 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
-          <h3 className="font-bold text-lg text-gray-800">Budgeting Tips</h3>
-          <p className="mt-2 text-gray-600">
-            Track all your expenses carefully, set realistic goals, and review
-            your spending habits regularly to stay on top of your finances.
-          </p>
-        </div>
 
-        <div className="p-6 rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
-          <h3 className="font-bold text-lg text-gray-800">
-            Why Financial Planning Matters
-          </h3>
-          <p className="mt-2 text-gray-600">
-            Small, consistent financial habits lead to long-term success. Start
-            early, plan wisely, and watch your wealth grow over time.
-          </p>
-        </div>
-      </section>
+  {/* ⭐ Budgeting Tips Card */}
+  <div className="p-6 rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+    <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+      💡 Budgeting Tips
+    </h3>
+
+    <p className="mt-2 text-gray-600 leading-relaxed">
+      Budgeting helps you gain control over your finances, avoid unnecessary
+      spending, and plan for future goals. A well-structured budget acts as the
+      foundation of financial stability.
+    </p>
+
+    <ul className="mt-4 space-y-3 text-gray-700">
+      <li className="flex gap-2">
+        <span className="text-green-600 text-xl">✔</span>
+        Track every expense — knowing where your money goes is the first step.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-green-600 text-xl">✔</span>
+        Follow the 50/30/20 rule: 50% needs, 30% wants, 20% savings.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-green-600 text-xl">✔</span>
+        Review & adjust your budget every month.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-green-600 text-xl">✔</span>
+        Set realistic spending limits & avoid impulse purchases.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-green-600 text-xl">✔</span>
+        Save first, spend later: always prioritize savings.
+      </li>
+    </ul>
+
+    <p className="mt-4 italic text-gray-500">
+      “A small change in spending habits today creates big financial wins
+      tomorrow.”
+    </p>
+  </div>
+
+  {/* ⭐ Why Financial Planning Matters Card */}
+  <div className="p-6 rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+    <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+      📊 Why Financial Planning Matters ?
+    </h3>
+
+    <p className="mt-2 text-gray-600 leading-relaxed">
+      Financial planning gives you clarity, direction, and confidence in managing
+      your money. Whether you’re building savings, paying off debt, or planning
+      long-term goals—planning makes everything achievable.
+    </p>
+
+    <ul className="mt-4 space-y-3 text-gray-700">
+      <li className="flex gap-2">
+        <span className="text-blue-600 text-xl">✔</span>
+        Helps you avoid debt and build long-term wealth.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-blue-600 text-xl">✔</span>
+        Keeps you prepared for emergencies with a solid backup plan.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-blue-600 text-xl">✔</span>
+        Makes major life goals (car, home, education) easier to achieve.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-blue-600 text-xl">✔</span>
+        Improves mental peace by reducing financial stress.
+      </li>
+
+      <li className="flex gap-2">
+        <span className="text-blue-600 text-xl">✔</span>
+        Encourages consistent saving and smart investing.
+      </li>
+    </ul>
+
+    <p className="mt-4 italic text-gray-500">
+      “If you fail to plan, you plan to fail — financial planning is your roadmap
+      to success.”
+    </p>
+  </div>
+
+</section>
+
     </div>
   );
 };
