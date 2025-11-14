@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-
+import { ToastContainer } from 'react-toastify';
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import RootLayout from './layouts/RootLayout.jsx';
@@ -67,9 +67,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider> 
+      <ToastContainer></ToastContainer>
       <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>,

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const UpdateTransaction = () => {
   const { id } = useParams();
@@ -51,7 +52,7 @@ const UpdateTransaction = () => {
   };
 
   // Submit Update
-  const handleUpdate = (e) => {
+    const handleUpdate = (e) => {
     e.preventDefault();
 
     fetch(`http://localhost:3000/transactions/${id}`, {
@@ -61,10 +62,16 @@ const UpdateTransaction = () => {
     })
       .then((res) => res.json())
       .then(() => {
-        alert("Transaction Updated Successfully!");
-        navigate("/my-transactions");
+        toast.success("Transaction Updated Successfully!", {
+          position: "top-center",
+        });
+
+        setTimeout(() => {
+          navigate("/my-transactions");
+        }, 1200);
       });
   };
+
 
   if (!transaction)
     return (
