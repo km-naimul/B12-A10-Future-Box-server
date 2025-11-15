@@ -47,7 +47,7 @@ const Home = () => {
         </h1>
        
        <marquee behavior="" direction="" gradient={true}>
-        <p className="mt-3 text-lg md:text-xl opacity-90 text-black font-semibold">
+        <p className="mt-3 text-lg italic md:text-xl opacity-90 text-black font-semibold">
          Plan your finances, control your future — your money should work for you, not against you.
 
         </p>

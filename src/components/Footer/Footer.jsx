@@ -1,9 +1,10 @@
 import React from "react";
 import logo from "../../assets/design-eye-catching-financial-logo.jpg";
+import { NavLink } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-primary/20 via-base-200 to-secondary/20 text-base-content py-10 px-6 border-t border-base-300">
+    <footer className="bg-linear-to-r from-cyan-500 to-blue-500 text-base-content py-10 px-6 border-t border-base-300">
       <div className="max-w-7xl mx-auto">
         {/* Upper Section */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20">
@@ -15,9 +16,11 @@ const Footer = () => {
                 alt="FinEase Logo"
                 className="w-12 h-12 object-contain rounded-xl shadow-md"
               />
-              <h1 className="text-xl font-semibold flex items-center">
-                Fin<span className="text-primary ml-1">Ease</span>
-              </h1>
+            <NavLink to="/" className="text-xl font-semibold flex items-center">
+    Fin <span className="text-primary ml-1">Ease</span>
+  </NavLink>
+
+              
             </div>
             <p className="text-sm opacity-75">
               Power Up Your Savings, One Tap at a Time.
