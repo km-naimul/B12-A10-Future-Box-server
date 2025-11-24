@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../contexts/AuthContext";
 import register from "../../assets/online-shopping-vector-61386614.jpg"
-
 const AddTransaction = () => {
   const { user } = useContext(AuthContext); // logged-in user info
   const [formData, setFormData] = useState({
@@ -12,8 +11,6 @@ const AddTransaction = () => {
     description: "",
     date: "",
   });
-
-  // Handle Input Change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,7 +19,6 @@ const AddTransaction = () => {
     });
   };
 
-  // Submit Form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,11 +26,11 @@ const AddTransaction = () => {
   ...formData,
   email: user?.email,
   name: user?.displayName,
-  amount: Number(formData.amount) // <-- এখানে string কে Number এ convert করা হয়েছে
+  amount: Number(formData.amount) 
 };
 
     try {
-      const res = await fetch("http://localhost:3000/transactions", {
+      const res = await fetch("https://b12-a10-future-box-client-neon.vercel.app/transactions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,11 +70,9 @@ const AddTransaction = () => {
     }
   };
 
-
   return (
-   <div className="w-full min-h-screen bg-sky-100 flex flex-col lg:flex-row items-center justify-center gap-2 p-6">
+   <div className="w-full min-h-screen flex flex-col lg:flex-row items-center justify-center gap-2 p-6">
 
-  {/* Left Image Section */}
   <div className="lg:w-1/2 flex justify-center">
     <img
       src={register}
@@ -87,16 +81,13 @@ const AddTransaction = () => {
     />
   </div>
 
-  {/* Form Section */}
   <div className="lg:w-1/2 w-full max-w-xl bg-[#87ceeb] rounded-2xl shadow-lg p-8"
 >
     <h2 className="text-3xl font-bold text-center mb-6 text-[#191970]">
       Add New Transaction
     </h2>
-
     <form onSubmit={handleSubmit} className="space-y-4">
 
-      {/* Type */}
       <div>
         <label className="label font-semibold ">Type</label>
         <select
@@ -109,8 +100,7 @@ const AddTransaction = () => {
           <option value="expense">Expense</option>
         </select>
       </div>
-
-      {/* Category */}
+   
       <div>
         <label className="label font-semibold">Category</label>
         <select
@@ -132,7 +122,6 @@ const AddTransaction = () => {
         </select>
       </div>
 
-      {/* Amount */}
       <div>
         <label className="label font-semibold">Amount</label>
         <input
@@ -145,8 +134,7 @@ const AddTransaction = () => {
           required
         />
       </div>
-
-      {/* Description */}
+     
       <div>
         <label className="label font-semibold">Description</label>
         <textarea
@@ -158,7 +146,6 @@ const AddTransaction = () => {
         ></textarea>
       </div>
 
-      {/* Date */}
       <div>
         <label className="label font-semibold">Date</label>
         <input
@@ -171,7 +158,6 @@ const AddTransaction = () => {
         />
       </div>
 
-      {/* Email & Name */}
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="label font-semibold">User Email</label>
@@ -179,7 +165,7 @@ const AddTransaction = () => {
             type="email"
             value={user?.email || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full "
           />
         </div>
         <div>
@@ -188,25 +174,21 @@ const AddTransaction = () => {
             type="text"
             value={user?.displayName || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full "
           />
         </div>
       </div>
-
-      {/* Submit */}
+      
       <div className="text-center mt-6">
-        <button type="submit" className="btn bg-[#191970] text-white w-full">
+        <button type="submit" className="btn bg-[#191970] text-white w-full hover:bg-blue-600 ">
           Add Transaction
         </button>
       </div>
 
     </form>
   </div>
-
 </div>
-
-
-    
+   
   );
 };
 

@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: 'my-transactions',
         element: <MyTransactions> </MyTransactions>,
-        loader: () => fetch ('http://localhost:3000/transactions')
+        loader: () => fetch ('https://b12-a10-future-box-client-neon.vercel.app/transactions')
 
       },
       {

@@ -11,7 +11,7 @@ const Home = () => {
   const fetchTransactions = () => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/transaction-balance?email=${user.email}`)
+    fetch(`https://b12-a10-future-box-client-neon.vercel.app/transaction-balance?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setTransactions(data);
@@ -39,8 +39,8 @@ const Home = () => {
   }, [user]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 via-cyan-50 to-white">
-      {/* Hero Section */}
+    <div className="min-h-screen ">
+
       <section className="bg-gradient-to-r from-cyan-600 to-teal-500 text-white rounded-2xl p-10 mx-4 md:mx-8 mt-8 shadow-lg text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
           Take Control of Your Money
@@ -49,16 +49,13 @@ const Home = () => {
        <marquee behavior="" direction="" gradient={true}>
         <p className="mt-3 text-lg italic md:text-xl opacity-90 text-black font-semibold">
          Plan your finances, control your future — your money should work for you, not against you.
-
         </p>
        </marquee>
-       
-        
+           
       </section>
     <p>
 
     </p>
-      {/* Summary Cards */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-8 mt-10">
         <div className="p-6 rounded-2xl bg-gradient-to-br from-teal-100 to-teal-50 shadow-md hover:shadow-lg transition">
           <div className="font-semibold text-gray-700">💰 Total Balance</div>
@@ -84,7 +81,6 @@ const Home = () => {
 
       <section className="mt-10 grid md:grid-cols-2 gap-6 px-4 md:px-8 pb-10">
 
-  {/* ⭐ Budgeting Tips Card */}
   <div className="p-6 rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
     <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
       💡 Budgeting Tips
@@ -129,7 +125,6 @@ const Home = () => {
     </p>
   </div>
 
-  {/* ⭐ Why Financial Planning Matters Card */}
   <div className="p-6 rounded-2xl bg-white shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
     <h3 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
       📊 Why Financial Planning Matters ?

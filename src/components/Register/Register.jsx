@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { NavLink } from "react-router";
 import Swal from "sweetalert2";
 import { updateProfile } from "firebase/auth";
+import login1 from "../../assets/artboard_copy_2x_4x.jpg"
 
 const Register = () => {
   const { createUser, signInWithGoogle , updateUser , setUser } = useContext(AuthContext);
@@ -13,12 +14,9 @@ const Register = () => {
     photoUrl: "",
     password: "",
   });
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  // 🔍 Password Validation
   const validatePassword = (password) => {
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
@@ -39,7 +37,6 @@ const Register = () => {
     return true;
   };
 
-  // 🔍 Photo URL validation
   const validatePhotoUrl = (photoUrl) => {
     if (!photoUrl || photoUrl.trim() === "") {
       Swal.fire("Warning", "Please provide your Photo URL!", "warning");
@@ -48,11 +45,9 @@ const Register = () => {
     return true;
   };
 
-  // ✅ Register Function
   const handleRegister = (e) => {
     e.preventDefault();
 
-    // Check photo & password
     if (!validatePhotoUrl(formData.photoUrl)) return;
     if (!validatePassword(formData.password)) return;
 
@@ -65,8 +60,6 @@ const Register = () => {
             setUser({...user, displayName: formData.name,
           photoURL: formData.photoUrl});
           })
-
-
 
         updateProfile(user, {
           displayName: formData.name,
@@ -86,21 +79,18 @@ const Register = () => {
       });
   };
 
-  // ✅ Google Sign-in
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then(result => {
         console.log(result.user);
         
-        // Swal.fire("Success!", "Signed in with Google!", "success");
-        // window.location.href = "/";
         const newUser = {
             name: result.user.displayName,
             email: result.user.email,
             image: result.user.photoURL
         }
 
-        fetch('http://localhost:3000/users',{
+        fetch('https://b12-a10-future-box-client-neon.vercel.app/users',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -118,75 +108,120 @@ const Register = () => {
   };
 
   return (
-    <div className="card bg-base-100 mx-auto w-full max-w-sm shrink-0 shadow-2xl py-10 m-10">
-      <h1 className="text-4xl font-bold text-center">Register now!</h1>
-      <div className="card-body">
-        <form onSubmit={handleRegister}>
-          <fieldset className="fieldset">
-            <label className="label">Name</label>
-            <input
-              type="text"
-              name="name"
-              className="input"
-              placeholder="Name"
-              onChange={handleChange}
-              required
-            />
+  <div className="min-h-screen w-full bg-[#eef4ff] flex items-center justify-center p-4">
 
-            <label className="label">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="input"
-              placeholder="Email"
-              onChange={handleChange}
-              required
-            />
+    <div className="
+      bg-white w-full max-w-5xl rounded-3xl shadow-xl 
+      flex flex-col lg:flex-row overflow-hidden 
+      md:max-w-4xl sm:max-w-lg
+    ">
 
-            <label className="label">Photo URL</label>
-            <input
-              type="text"
-              name="photoUrl"
-              className="input"
-              placeholder="Photo URL"
-              onChange={handleChange}
-              required
-            />
+      <div className="
+        w-full lg:w-1/2 flex items-center justify-center 
+        p-4 sm:p-6 md:p-8 bg-white
+      ">
+        <img
+          src={login1}
+          alt="Illustration"
+          className="
+            w-full max-w-xs sm:max-w-sm md:max-w-md 
+            lg:max-w-lg xl:max-w-xl object-contain
+          "
+        />
+      </div>
 
-            <label className="label">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="input"
-              placeholder="Password"
-              onChange={handleChange}
-              required
-            />
+      <div className="
+        w-full lg:w-1/2 p-6 sm:p-8 md:p-10 
+        flex flex-col justify-center
+      ">
+        <h1 className="
+          text-3xl sm:text-4xl font-bold 
+          mb-6 sm:mb-8 text-center lg:text-left text-black
+        ">
+          Register now!
+        </h1>
 
-            <button type="submit" className="btn btn-neutral mt-4">
-              Register
-            </button>
-          </fieldset>
-        </form>
+        <div className="flex flex-col ">
 
-        <h2 className="text-center mt-2">or</h2>
+          <form onSubmit={handleRegister} className="w-full flex justify-center">
+            <fieldset className="fieldset w-full max-w-xs sm:max-w-sm">
 
-        <button
-          onClick={handleGoogleSignIn}
-          className="btn bg-white text-black border-[#e5e5e5]"
-        >
-          Login with Google
-        </button>
+              <label className="label text-black">Name</label>
+              <input
+                type="text"
+                name="name"
+                className="input"
+                placeholder="Name"
+                onChange={handleChange}
+                required
+              />
 
-        <div className="font-semibold text-center pt-2">
-          Already have an account?{" "}
-          <NavLink to="/login" className="text-primary">
-            Sign in
-          </NavLink>
+              <label className="label text-black">Email</label>
+              <input
+                type="email"
+                name="email"
+                className="input"
+                placeholder="Email"
+                onChange={handleChange}
+                required
+              />
+
+              <label className="label text-black">Photo URL</label>
+              <input
+                type="text"
+                name="photoUrl"
+                className="input"
+                placeholder="Photo URL"
+                onChange={handleChange}
+                required
+              />
+
+              <label className="label text-black">Password</label>
+              <input
+                type="password"
+                name="password"
+                className="input"
+                placeholder="Password"
+                onChange={handleChange}
+                required
+              />
+
+              <button 
+                type="submit"
+                className="
+                  sm:w-[320px] w-full h-[45px] bg-[#96f409] text-white 
+                  rounded-lg font-semibold mt-4
+                  hover:bg-[#3b57d1] transition
+                "
+              >
+                Register
+              </button>
+            </fieldset>
+          </form>
+
+          <div className="sm:px-38 my-3 text-gray-500 px-28">or</div>
+
+          <button
+            onClick={handleGoogleSignIn}
+            className="
+              sm:w-[320px] w-full h-[45px] bg-white border text-black rounded-lg font-semibold 
+             hover:bg-[#3b57d1] transition
+            "
+          >
+            Sign up with Google
+          </button>
+          <div className="font-semibold text-center pt-4 text-black">
+            Already have an account?{" "}
+            <NavLink to="/login" className="text-primary">
+              Sign in
+            </NavLink>
+          </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default Register;

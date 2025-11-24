@@ -4,11 +4,11 @@ import { NavLink } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-linear-to-r from-cyan-500 to-blue-500 text-base-content py-10 px-6 border-t border-base-300">
+    <footer className="bg-gradient-to-r from-cyan-600 to-blue-600 text-base-content py-6 px-4 md:px-6 ">
       <div className="max-w-7xl mx-auto">
-        {/* Upper Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-20">
-          {/* Logo & Tagline */}
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-20">
+
           <div className="text-center md:text-left space-y-2">
             <div className="flex items-center justify-center md:justify-start space-x-2">
               <img
@@ -16,118 +16,80 @@ const Footer = () => {
                 alt="FinEase Logo"
                 className="w-12 h-12 object-contain rounded-xl shadow-md"
               />
-            <NavLink to="/" className="text-xl font-semibold flex items-center">
-    Fin <span className="text-primary ml-1">Ease</span>
-  </NavLink>
-
-              
+              <NavLink
+                to="/"
+                className="text-3xl font-bold text-white flex items-center"
+              >
+                Fin<span className="text-yellow-300">Ease</span>
+              </NavLink>
             </div>
-            <p className="text-sm opacity-75">
+            <p className="text-sm opacity-80">
               Power Up Your Savings, One Tap at a Time.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <nav className="flex flex-col md:flex-row items-center gap-4 text-sm">
-            <a className="link link-hover hover:text-primary transition-colors duration-200">
-              Contact
-            </a>
-            <a className="link link-hover hover:text-primary transition-colors duration-200">
-              Jobs
-            </a>
-            <a className="link link-hover hover:text-primary transition-colors duration-200">
-              Press Kit
-            </a>
-          </nav>
+          <div className="flex items-center justify-center md:justify-end gap-4">
 
-          {/* Social Media Icons */}
-          <div className="flex items-center justify-center gap-4">
-            {/* Twitter */}
-            <a
-              href="#"
-              className="p-2 rounded-full hover:bg-primary/10 transition-colors"
-              aria-label="Twitter"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M23.954 4.569c-.885.392-1.83.656-2.825.775 
-                1.014-.611 1.794-1.574 2.163-2.723-.949.555-2.005.959-3.127 
-                1.184-.897-.959-2.178-1.555-3.594-1.555-2.717 
-                0-4.924 2.206-4.924 4.923 0 .39.045.765.127 
-                1.124C7.691 8.095 4.066 6.13 1.64 
-                3.161c-.427.722-.666 1.561-.666 2.475 
-                0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.229-.616v.062c0 
-                2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.317 
-                0-.626-.03-.928-.086.627 1.956 2.444 3.377 4.6 
-                3.419-1.68 1.316-3.809 2.101-6.102 
-                2.101-.396 0-.788-.023-1.175-.067 
-                2.189 1.394 4.768 2.209 7.557 2.209 
-                9.054 0 14.004-7.496 14.004-13.986 
-                0-.213-.005-.425-.014-.636.961-.689 
-                1.8-1.56 2.46-2.548z" />
+            <a href="#" className="p-2 rounded-full hover:bg-white/20 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                className="fill-current text-white" viewBox="0 0 448 512">
+                <path d="M357.2 48L427.8 48 273.6 224.2 455 464 313 464 201.7 318.6 74.5 464 3.8 464 168.7 275.5-5.2 48 140.4 48 240.9 180.9 357.2 48zM332.4 421.8l39.1 0-252.4-333.8-42 0 255.3 333.8z" />
               </svg>
             </a>
 
-            {/* YouTube */}
-            <a
-              href="#"
-              className="p-2 rounded-full hover:bg-primary/10 transition-colors"
-              aria-label="YouTube"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 
-                0-3.897.266-4.356 2.62-4.385 
-                8.816.029 6.185.484 8.549 4.385 
-                8.816 3.6.245 11.626.246 15.23 
-                0 3.897-.266 4.356-2.62 
-                4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 
-                12.816v-8l8 3.993-8 4.007z" />
+            <a href="#" className="p-2 rounded-full hover:bg-white/20 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                className="fill-current text-white" viewBox="0 0 24 24">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
               </svg>
             </a>
 
-            {/* Facebook */}
-            <a
-              href="#"
-              className="p-2 rounded-full hover:bg-primary/10 transition-colors"
-              aria-label="Facebook"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M9 8H6v4h3v12h5V12h3.642L18 
-                8h-4V6.333C14 5.378 14.192 5 15.115 
-                5H18V0h-3.808C10.596 0 9 1.583 9 
-                4.615V8z" />
+            <a href="#" className="p-2 rounded-full hover:bg-white/20 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                className="fill-current text-white" viewBox="0 0 24 24">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.378 14.192 5 15.115 5H18V0h-3.808C10.596 0 9 1.583 9 4.615V8z" />
               </svg>
             </a>
+
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="divider my-8 opacity-40"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 text-center md:text-left">
 
-        {/* Bottom Section */}
-        <aside className="text-center text-sm opacity-70">
-          <p>
-            © {new Date().getFullYear()} FinEase — All Rights Reserved | Crafted
-            with 💙 by ACME Industries Ltd
-          </p>
-        </aside>
+          <div className="px-2">
+            <h3 className="font-bold text-lg text-white mb-2">Company</h3>
+            <p className="text-sm opacity-80">
+              FinEase is your trusted financial partner.  
+              Manage expenses, budgets & goals effortlessly.
+            </p>
+          </div>
+
+          <div className="px-4">
+            <h3 className="font-bold text-lg text-white mb-2">Terms & Conditions</h3>
+            <ul className="space-y-2 text-sm opacity-80">
+              <li><span className="text-green-600 text-xl">✔</span> Provide accurate and current information.</li>
+              <li><span className="text-green-600 text-xl">✔</span> Keep your login credentials confidential.</li>
+              <li><span className="text-green-600 text-xl">✔</span> Must be at least 16 years old.</li>
+            </ul>
+          </div>
+
+          <div className="px-2">
+            <h3 className="font-bold text-lg text-white mb-2">Contact</h3>
+            <ul className="space-y-2 text-sm opacity-80">
+              <li>📍 28/1 Banani, Dhaka-Bangladesh</li>
+              <li>📧 support@finease.com</li>
+              <li>📞 +880 123 456 7890</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div className="divider my-4 opacity-30"></div>
+
+        <p className="text-center text-sm opacity-75">
+          © {new Date().getFullYear()} All Rights Reserved | Crafted with 💙 by FinEase Ltd
+        </p>
+
       </div>
     </footer>
   );

@@ -14,13 +14,13 @@ const TransactionDetails = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/transactions/${id}`)
+    fetch(`https://b12-a10-future-box-client-neon.vercel.app/transactions/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTransaction(data);
 
         fetch(
-          `http://localhost:3000/transactions?category=${data.category}&email=${user.email}&type=${data.type}`
+          `https://b12-a10-future-box-client-neon.vercel.app/transactions?category=${data.category}&email=${user.email}&type=${data.type}`
         )
           .then((res) => res.json())
           .then((allCategoryData) => {
@@ -49,7 +49,6 @@ const TransactionDetails = () => {
       className="min-h-screen flex justify-center items-center p-6 bg-cover bg-center"
       style={{ backgroundImage: `url(${details})` }}
     >
-      {/* Soft Overlay */}
       <div className="inset-0 bg-white/10"></div>
 
       <div className="relative card w-full max-w-xl bg-sky-200 shadow-2xl p-8 rounded-2xl border border-gray-200">
@@ -107,7 +106,6 @@ const TransactionDetails = () => {
             <span>{new Date(transaction.date).toLocaleDateString()}</span>
           </div>
 
-          {/* Total for this category */}
           <div className="pt-2 text-center">
             <p className="font-semibold text-primary text-lg">
               Total in this Category ({transaction.category}):{" "}

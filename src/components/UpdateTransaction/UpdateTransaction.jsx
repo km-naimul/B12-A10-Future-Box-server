@@ -17,9 +17,8 @@ const UpdateTransaction = () => {
 
   const [categoryTotal, setCategoryTotal] = useState(0);
 
-  // Load current transaction
   useEffect(() => {
-    fetch(`http://localhost:3000/transactions/${id}`)
+    fetch(`https://b12-a10-future-box-client-neon.vercel.app/transactions/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setTransaction(data);
@@ -31,9 +30,8 @@ const UpdateTransaction = () => {
           category: data.category,
         });
 
-        // Load category total
         fetch(
-          `http://localhost:3000/transactions?email=${data.email}`
+          `https://b12-a10-future-box-client-neon.vercel.app/transactions?email=${data.email}`
         )
           .then((res) => res.json())
           .then((all) => {
@@ -46,16 +44,15 @@ const UpdateTransaction = () => {
       });
   }, [id]);
 
-  // Handle Input Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Submit Update
+
     const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/transactions/${id}`, {
+    fetch(`https://b12-a10-future-box-client-neon.vercel.app/transactions/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -88,7 +85,6 @@ const UpdateTransaction = () => {
 
       <form onSubmit={handleUpdate} className="space-y-5">
 
-        {/* Type */}
         <div>
           <label className="label font-semibold">Type</label>
           <select
@@ -103,7 +99,6 @@ const UpdateTransaction = () => {
           <p className="text-xs text-gray-500">Current: {transaction.type}</p>
         </div>
 
-        {/* Description */}
         <div>
           <label className="label font-semibold">Description</label>
           <textarea
@@ -117,7 +112,6 @@ const UpdateTransaction = () => {
           </p>
         </div>
 
-        {/* Amount */}
         <div>
           <label className="label font-semibold">Amount</label>
           <input
@@ -132,7 +126,7 @@ const UpdateTransaction = () => {
           </p>
         </div>
 
-        {/* Date */}
+
         <div>
           <label className="label font-semibold">Date</label>
           <input
@@ -147,7 +141,7 @@ const UpdateTransaction = () => {
           </p>
         </div>
 
-        {/* Category */}
+ 
         <div>
           <label className="label font-semibold">Category</label>
           <select
@@ -170,13 +164,12 @@ const UpdateTransaction = () => {
           </p>
         </div>
 
-        {/* TOTAL Amount of Category */}
+   
         <div className="mt-4 p-4 bg-base-100 rounded-lg shadow">
           <h3 className="font-semibold text-lg">Total Amount In This Category:</h3>
           <p className="text-xl font-bold text-primary">${categoryTotal}</p>
         </div>
 
-        {/* Save Button */}
         <button type="submit" className="btn bg-yellow-500 w-full mt-4 hover:bg-primary text-base-100">
           Update Transaction
         </button>
