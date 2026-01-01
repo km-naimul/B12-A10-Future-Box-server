@@ -1,6 +1,8 @@
-# FinEase – Personal Finance Management App  
+## 📌 Project Name: 
+FinEase – Personal Finance Management App  
 
-## Live Site:  https://extraordinary-paprenjak-cd6d76.netlify.app/
+### 🚀 Live Site:  https://extraordinary-paprenjak-cd6d76.netlify.app/
+
 
 ---
 
@@ -16,3 +18,13 @@
 - **User Dashboard** – View all transactions, budgets, and analytics in one place.
 
 ---
+
+### 📦 Dependencies
+-  React
+
+-  ### ⚙️ How to Run Locally
+1. Clone the repository  
+2. Open index.html  
+OR  
+npm install  
+npm start
